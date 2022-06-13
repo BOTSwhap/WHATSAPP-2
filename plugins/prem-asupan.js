@@ -1,14 +1,14 @@
 
 import axios from 'axios'
 
-let handler = async(m, { conn }) => {
+let handler = async(m, { conn, usedPrefix, command }) => {
 	
 	let asu = ["asupan", "asupan-la"]
     let asufg = asu[Math.floor(Math.random() * asu.length)]
 	
 	let asupan = (await axios.get(`https://raw.githubusercontent.com/FG98F/team-fg/main/img/${asufg}.json`)).data
   
-await conn.sendFile(m.chat, pickRandom(asupan), 'asupan.mp4', '✅ Aquí tiene', m)
+await conn.sendHydrated(m.chat, `✅ Aquí tiene`, igfg, pickRandom(asupan), null, null, null, null, [['▷▷ SIGUIENTE', `${usedPrefix + command}`]], m)
 }
 handler.help = ['asupan']
 handler.tags = ['premium']
