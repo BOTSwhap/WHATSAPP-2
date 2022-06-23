@@ -18,7 +18,7 @@ let handler = async (m, { conn, text }) => {
     let users = db.data.users
    users[who].limit += dmt
 
-    m.reply(`≡ *💎 AÑADIDO*
+    await m.reply(`≡ *💎 AÑADIDO*
 ┌──────────────
 ▢ *Total:* ${dmt}
 └──────────────`)
