@@ -1,7 +1,7 @@
 import { instagramStalk } from '@bochilteam/scraper'
 
 let handler= async (m, { args, usedPrefix, command }) => {
-    if (!args[0]) throw `✳️ Escriba un Nombre de Usuario\n\n📌Ejemplo : ${usedPrefix + command}fg98._`
+    if (!args[0]) throw `✳️ Escriba un Nombre de Usuario\n\n📌Ejemplo : ${usedPrefix + command} fg98._`
     const {
         username,
         name,
@@ -15,7 +15,7 @@ let handler= async (m, { args, usedPrefix, command }) => {
 ▢ *🔖 Nombre Completo* : ${name} 
 ▢ *🔖 Username* : ${username}
 ▢ *👥 Seguidores* : ${followersH}
-▢ *🫂 Siguiendo* : ${followingH}*
+▢ *🫂 Siguiendo* : ${followingH}
 ▢ *📌 Bio :* ${description}
 
 ▢ *🔗 Link* : https://instagram.com/${username.replace(/^@/, '')}

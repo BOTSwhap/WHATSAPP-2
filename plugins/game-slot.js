@@ -1,5 +1,6 @@
+import db from '../lib/database.js'
 
-let handler = async (m, { args, usedPrefix, command }) => {
+let handler = async (m, { conn, args, usedPrefix, command }) => {
     let fa = `
 Cuanto quieres apostar? 
 
@@ -8,7 +9,7 @@ Cuanto quieres apostar?
     if (!args[0]) throw fa
     if (isNaN(args[0])) throw fa
     let apuesta = parseInt(args[0])
-    let users = global.db.data.users[m.sender]
+    let users = db.data.users[m.sender]
     let time = users.lastslot + 10000
     if (new Date - users.lastslot < 10000) throw `⏳ Espere ${msToTime(time - new Date())}`
     if (apuesta < 100) throw '✳️ Mínimo de la apuesta es *100 XP*'

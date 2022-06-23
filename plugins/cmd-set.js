@@ -1,7 +1,9 @@
-let handler = async (m, { conn, text, usedPrefix, command }) => {
+import db from '../lib/database.js'
+
+let handler = async (m, { text, usedPrefix, command }) => {
     db.data.sticker = db.data.sticker || {}
     if (!m.quoted) throw `✳️Responde a un mensaje con *${usedPrefix + command}*`
-    if (!m.quoted.fileSha256) throw '⚠️ Falta el hash SHA256'
+    if (!m.quoted.fileSha256) throw '⚠️ Falta el SHA256 Hash Missing'
     if (!text) throw `✳️ Falta el comando`
     let sticker = db.data.sticker
     let hash = m.quoted.fileSha256.toString('base64')

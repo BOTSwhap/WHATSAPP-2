@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-let handler = async (m, { text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
 	let name = conn.getName(m.sender)
   if (!text) throw `✳️ *Ejemplo :*\n\n *${usedPrefix + command}* soy feo?`
   try {

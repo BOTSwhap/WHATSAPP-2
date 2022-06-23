@@ -1,4 +1,6 @@
-let handler = async (m, {usedPrefix}) => {
+import db from '../lib/database.js'
+
+let handler = async (m, {conn, usedPrefix}) => {
 	
     let who
     if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
@@ -7,7 +9,7 @@ let handler = async (m, {usedPrefix}) => {
     m.reply(`
 ┌───⊷ *BALANCE* ⊶
 ▢ *Nombre* : ${name}
-▢ *Diamantes* : *${global.db.data.users[who].limit}💎*
+▢ *Diamantes* : *${db.data.users[who].limit}💎*
 └──────────────
 *NOTA :* 
 Puedes comprar 💎 diamantes usando los comandos

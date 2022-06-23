@@ -1,5 +1,7 @@
+import db from '../lib/database.js'
+
 let handler = async (m, { conn, args, participants }) => {
-  let users = Object.entries(global.db.data.users).map(([key, value]) => {
+  let users = Object.entries(db.data.users).map(([key, value]) => {
     return {...value, jid: key}
   })
   let sortedExp = users.map(toNumber('exp')).sort(sort('exp'))
@@ -29,10 +31,11 @@ Tú : *${usersLevel.indexOf(m.sender) + 1}* de *${usersLevel.length}*
 ${sortedLevel.slice(0, len).map(({ jid, level }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *Nivel ${level}*`).join`\n`}
 `.trim()
   conn.reply(m.chat, text, m, {
-    contextInfo: {
-      mentionedJid: [...usersExp.slice(0, len), ...usersLim.slice(0, len), ...usersLevel.slice(0, len)].filter(v => !participants.some(p => v === p.jid))
-    }
+    mentions: [...usersExp.slice(0, len), ...usersLim.slice(0, len), ...usersLevel.slice(0, len)].filter(v => !participants.some(p => v === p.jid))
+    
   })
+  
+
 }
 handler.help = ['top']
 handler.tags = ['xp']

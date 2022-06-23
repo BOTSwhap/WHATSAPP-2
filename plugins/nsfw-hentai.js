@@ -1,3 +1,4 @@
+import db from '../lib/database.js'
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix, command }) => {

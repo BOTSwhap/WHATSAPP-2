@@ -1,5 +1,7 @@
+import db from '../lib/database.js'
+
 import MessageType from '@adiwajshing/baileys'
-let pajak = 0
+let impts = 0
 let handler = async (m, { conn, text }) => {
     let who
     if (m.isGroup) who = m.mentionedJid[0]
@@ -10,10 +12,10 @@ let handler = async (m, { conn, text }) => {
     if (isNaN(txt)) throw '🔢 sólo números'
     let dmt = parseInt(txt)
     let limit = dmt
-    let pjk = Math.ceil(dmt * pajak)
+    let pjk = Math.ceil(dmt * impts)
     limit += pjk
     if (limit < 1) throw '✳️ Mínimo es  *1*'
-    let users = global.db.data.users
+    let users = db.data.users
    users[who].limit += dmt
 
     m.reply(`≡ *💎 AÑADIDO*

@@ -1,4 +1,6 @@
-let handler = async (m, { usedPrefix, command, text }) => {
+import db from '../lib/database.js'
+
+let handler = async (m, { conn, usedPrefix, command, text }) => {
     let who
     if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
     else who = text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat
@@ -6,11 +8,7 @@ let handler = async (m, { usedPrefix, command, text }) => {
     if (!who) return m.reply(`✳️ Menciona al usuario con @\n\n📌 *Ejemplo* :\n${usedPrefix + command} @${m.sender.split`@`[0]}`)
     user.premium = false
     user.premiumTime = 0
-    conn.reply(m.chat, `✅ Premium removido \n\n@${who.split('@')[0]} Ya no eres premium`, m, {
-        contextInfo: {
-            mentionedJid: [who]
-        }
-    })
+    conn.reply(m.chat, `✅ Premium removido \n\n@${who.split('@')[0]} Ya no eres premium`, m, { mentions: [who] })
     
 }
 handler.help = ['delprem @user']

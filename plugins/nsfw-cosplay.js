@@ -1,6 +1,8 @@
 
+import db from '../lib/database.js'
 import fetch from 'node-fetch'
 import axios from 'axios'
+
 let handler = async (m, { conn, command, usedPrefix }) => {
 if (!db.data.chats[m.chat].nsfw && m.isGroup) throw `❗El grupo no admite contenido nsfw \n\n Para habilitar escriba \n*${usedPrefix}enable* nsfw`
 var {age} = db.data.users[m.sender]

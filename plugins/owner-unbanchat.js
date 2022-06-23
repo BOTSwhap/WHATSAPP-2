@@ -1,5 +1,7 @@
+import db from '../lib/database.js'
+
 let handler = async (m) => {
-    global.db.data.chats[m.chat].isBanned = false
+    db.data.chats[m.chat].isBanned = false
     m.reply('✅ Bot activo  en este grupo')
 }
 handler.help = ['unbanchat']

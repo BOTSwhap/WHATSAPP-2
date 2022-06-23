@@ -1,3 +1,5 @@
+import db from '../lib/database.js'
+
 import MessageType from '@adiwajshing/baileys'
 let impuesto = 0.02
 let handler = async (m, { conn, text }) => {
@@ -13,12 +15,12 @@ let handler = async (m, { conn, text }) => {
   let imt = Math.ceil(xp * impuesto)
   exp += imt
   if (exp < 1) throw '✳️ Mínimo es  *1*'
-  let users = global.db.data.users
+  let users = db.data.users
   if (exp > users[m.sender].exp) throw '✳️ *Exp* insuficiente para transferir'
   users[m.sender].exp -= exp
   users[who].exp += xp
 
-  m.reply(`≡ *TRANSFERENCIA De XP*
+  await m.reply(`≡ *TRANSFERENCIA De XP*
 ┌──────────────
 ▢  *${-xp}* XP
 ▢ Impuesto 2% : *${-imt}* XP 

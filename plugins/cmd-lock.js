@@ -1,3 +1,4 @@
+import db from '../lib/database.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!m.quoted) throw '✳️ Responde a un mensaje'
@@ -7,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!(hash in sticker)) throw 'No está registrado en la base de datos'
     sticker[hash].locked = !/^un/i.test(command)
     m.reply('✅ Hecho')
-} 
+}
 handler.help = ['un', ''].map(v => v + 'lockcmd')
 handler.tags = ['database']
 handler.command = ['unlockcmd', 'lockcmd'] 

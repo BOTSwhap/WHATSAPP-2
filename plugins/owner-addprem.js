@@ -1,3 +1,4 @@
+import db from '../lib/database.js'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let who
@@ -22,11 +23,7 @@ conn.reply(m.chat, `
 ▢ *Nombre:* ${user.name}
 ▢ *Expira en :* ${txt} Días
 └───────────
-`, m, {
-        contextInfo: {
-            mentionedJid: [who]
-        }
-    })
+`, m, { mentions: [who] })
 
 }
 handler.help = ['addprem <@tag> <días>']

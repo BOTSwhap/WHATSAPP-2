@@ -1,11 +1,12 @@
+import db from '../lib/database.js'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  let user = Object.entries(global.db.data.users).filter(user => user[1].premiumTime).map(([key, value]) => {
+  let user = Object.entries(db.data.users).filter(user => user[1].premiumTime).map(([key, value]) => {
     return { ...value, jid: key }
   })
  
-  let premTime = global.db.data.users[m.sender].premiumTime
-  let prem = global.db.data.users[m.sender].premium
+  let premTime = db.data.users[m.sender].premiumTime
+  let prem = db.data.users[m.sender].premium
   let waktu = clockString(`${premTime - new Date() * 1} `)
   let sortedP = user.map(toNumber('premiumTime')).sort(sort('premiumTime'))
   let len = args[0] && args[0].length > 0 ? Math.min(100, Math.max(parseInt(args[0]), 10)) : Math.min(10, sortedP.length)

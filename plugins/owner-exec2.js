@@ -2,7 +2,7 @@ import cp, { exec as _exec } from 'child_process'
 import { promisify } from 'util'
 let exec = promisify(_exec).bind(cp)
 let handler = async (m, { conn, isOwner, command, text }) => {
-  if (global.conn.user.jid != conn.user.jid) return
+  if (conn.user.jid != conn.user.jid) return
   m.reply('✅ Ejecutando...')
   let o
   try {
@@ -15,7 +15,6 @@ let handler = async (m, { conn, isOwner, command, text }) => {
     if (stderr.trim()) m.reply(stderr)
   }
 }
-
 handler.help = ['$']
 handler.tags = ['advanced']
 handler.customPrefix = /^[$] /

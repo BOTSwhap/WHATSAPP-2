@@ -33,8 +33,6 @@ ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
 
-▢ *JUGADOR 1* @${room.game.playerX.split('@')[0]} ❎
-▢ *JUGADOR 2* @${room.game.playerO.split('@')[0]} ⭕
 ▢ *SALA ID* ${room.id}
 
 ▢ *Reglas*
@@ -57,13 +55,13 @@ ${arr.slice(6).join('')}
         }
         if (text) room.name = text
         
-        conn.sendButton(m.chat, `⏳ *Esperando pareja*\nEscriba el siguiente comando para aceptar o presiona el botón 
+     conn.sendButton(m.chat, `⏳ *Esperando pareja*\nEscriba el siguiente comando para aceptar o presiona el botón 
 ▢ *${usedPrefix + command} ${text}*
 
 🎁 Recompensa: *4999 XP*`, igfg, ['👍🏻 Aceptar', `${usedPrefix + command} ${text}`], m, {
             mentions: conn.parseMention(text)
         })
-
+        
    conn.game[room.id] = room
     }
     
