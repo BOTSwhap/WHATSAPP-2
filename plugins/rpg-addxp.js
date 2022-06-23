@@ -18,7 +18,7 @@ let handler = async (m, { conn, text }) => {
   let users = db.data.users
   users[who].exp += xp
 
-  m.reply(`≡ *XP AÑADIDO*
+  await m.reply(`≡ *XP AÑADIDO*
 ┌──────────────
 ▢  *Total:* ${xp}
 └──────────────`)
