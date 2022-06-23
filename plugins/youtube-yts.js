@@ -1,7 +1,7 @@
 
 import yts from 'yt-search'
 
-let handler = async (m, { text }) => {
+let handler = async (m, {conn, text }) => {
   if (!text) throw '✳️ Que quieres que busque en YouTube?'
   let results = await yts(text)
   let tes = results.all

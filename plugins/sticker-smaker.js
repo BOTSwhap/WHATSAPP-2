@@ -25,7 +25,7 @@ avatar: url
 })
 try {
 let stiker = await sticker(null, apiUrl, global.packname, global.author)
-conn.sendFile(m.chat, stiker, null, { asSticker: true })
+conn.sendFile(m.chat, stiker, null, { asSticker: true }, m)
 } catch (e) {
 m.reply('Error de conversión a sticker, se envía como imagen en su lugar')
 await conn.sendFile(m.chat, apiUrl, 'smaker.png', null, m)

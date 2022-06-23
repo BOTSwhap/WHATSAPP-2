@@ -1,10 +1,12 @@
-let limit = 50
+
+import db from '../lib/database.js'
 import fetch from 'node-fetch'
 import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper';
+let limit = 80
 let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
   if (!args || !args[0]) throw `✳️ Ejemplo :\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`
- //m.reply('*⌛ _Cargando..._ ▬▬▬▭*') 
- let chat = global.db.data.chats[m.chat]
+
+ let chat = db.data.chats[m.chat]
   const isY = /y(es)/gi.test(args[1])
   const { thumbnail, video: _video, title } = await youtubedl(args[0]).catch(async _ => await youtubedlv2(args[0])).catch(async _ => await youtubedlv3(args[0]))
   const limitedSize = (isPrems || isOwner ? 350 : limit) * 3074
@@ -12,7 +14,7 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
   for (let i in _video) {
     try {
       video = _video[i]
-      isLimit = limitedSize < video.fileSizeH
+      isLimit = limitedSize < video.fileSize
       if (isLimit) continue
       link = await video.download()
       if (link) res = await fetch(link)
